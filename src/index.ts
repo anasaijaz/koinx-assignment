@@ -25,9 +25,6 @@ app.use(routes);
 // Fetching Ethereum price every 10 minutes
 cron.schedule('* */10 * * * *', ethPriceServices.update);
 
-app.get("/", (req: Request, res: Response, next: NextFunction) => {
-  res.end("Hello from other side!");
-});
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   next(new createError.NotFound());

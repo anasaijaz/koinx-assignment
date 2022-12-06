@@ -5,7 +5,11 @@ import ethRoutes from "./ethRoutes";
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.status(200).send("Welcome to start point!");
+  res.status(200).send({
+    getTransactions: '/transaction/<user_address>',
+    getEthPrice: '/eth/price',
+    getBalance: '/transaction/balance/<user_address>'
+  });
 });
 
 // User transaction routes
