@@ -20,7 +20,7 @@ const getNormalTransactionsByUserAddress = async (userAddr) => {
 
     const data = res.data;
     const { message, status, result } = data;
-    if(status !== '1') throw createHttpError({stack: 408, message: 'Rate limit exceeded'})
+    if(status !== '1') throw createHttpError({stack: res.status, message: message})
 
     return result.map(txn => ({
       from: txn.from,
