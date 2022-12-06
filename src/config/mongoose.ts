@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
 
+const DB_NAME = 'koinx-assignment'
 const username = encodeURIComponent("developer");
 const password = encodeURIComponent("developer");
 const cluster = "cluster0.deidv.mongodb.net";
-let uri = `mongodb+srv://${username}:${password}@${cluster}/?retryWrites=true&w=majority`;
+let uri = `mongodb+srv://${username}:${password}@${cluster}/${DB_NAME}?retryWrites=true&w=majority`;
 
 mongoose.set("strictQuery", true);
 

@@ -1,8 +1,8 @@
 import express from "express";
 import txnsController from "../controllers/txnsController";
+import ethDataController from "../controllers/ethDataController";
 const router = express.Router();
 
-router.get("/:user_address", txnsController.get);
-router.get('/balance/:user_address', txnsController.getBalance)
+router.get("/", ethDataController.get);
 
 export default router;

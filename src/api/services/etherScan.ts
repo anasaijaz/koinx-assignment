@@ -12,18 +12,27 @@ const getNormalTransactionsByUserAddress = async (userAddr) => {
     const res = await _api.get("/", {
       params: {
         module: "account",
-        action: "txlistinternal",
+        action: "txlist",
         address: userAddr,
         startblock: 0,
+        offset: 10000,
         page: 1,
-        sort: "asc",
       },
     });
 
     const data = res.data;
     const { message, status, result } = data;
 
-    return result;
+    console.log(result.length)
+    return result.map(txn => ({
+      from: txn.from,
+      to: txn.to,
+      value: txn.value,
+      isError: (txn.isError === "1"),
+      gas: txn.gas,
+      gasPrice: txn.gasPrice,
+      gasUsed: txn.gasUsed
+    }));
   } catch (error) {
     console.error(error);
   }

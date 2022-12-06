@@ -9,7 +9,10 @@ import express, {
 import { Server } from "http";
 import createError from "http-errors";
 import routes from "./api/routes/webRoutes";
+import * as cron from 'node-cron'
+import ethPriceServices from './api/services/db/ethPriceServices'
 import "./config/mongoose";
+import "./config/redis"
 
 config({ path: `.env.${process.env.NODE_ENV}` });
 
@@ -18,6 +21,9 @@ const app: Application = express();
 app.use(express.json());
 
 app.use(routes);
+
+// Fetching Ethereum price every 10 minutes
+cron.schedule('*/10 * * * * *', ethPriceServices.update);
 
 app.get("/", (req: Request, res: Response, next: NextFunction) => {
   res.end("Hello from other side!");
