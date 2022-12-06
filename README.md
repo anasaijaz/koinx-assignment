@@ -6,3 +6,7 @@ A simple Node.js backend to explore blockchain
   ``/eth/price``
 - [x] Calculate total balance of a user using previous transactions
 ``/transaction/balance/<user_address>``
+
+
+* APIs only calculate balance using external transactions, any smart contract transfers will be ignored
+may result in negative overall balance
