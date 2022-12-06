@@ -1,0 +1,38 @@
+{
+  "name": "backend-boilerplate",
+  "version": "1.0.0",
+  "description": "Boiler Plate for Backend (Node.js) in TypeScript",
+  "main": "./src/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "cross-env NODE_ENV=development nodemon ./src/index.ts",
+    "prod": "cross-env NODE_ENV=production npm run build && node ./dist/index.js",
+    "stage": "cross-env NODE_ENV=stage npm run build && node ./dist/index.js",
+    "format": "prettier --write ."
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "prettier --write . && git add -A ."
+    }
+  },
+  "author": "Payatu",
+  "license": "ISC",
+  "devDependencies": {
+    "@tsconfig/recommended": "^1.0.1",
+    "@types/express": "^4.17.13",
+    "@types/http-errors": "^1.8.2",
+    "@types/node": "^17.0.35",
+    "cross-env": "^7.0.3",
+    "husky": "^4.3.8",
+    "nodemon": "^2.0.16",
+    "prettier": "^2.6.2",
+    "ts-node": "^10.8.0",
+    "tslib": "^2.4.0",
+    "typescript": "^4.6.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "http-errors": "^2.0.0"
+  }
+}
