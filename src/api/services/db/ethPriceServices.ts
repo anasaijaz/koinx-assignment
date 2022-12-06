@@ -10,7 +10,6 @@ const updateEthPrice = async () => {
 
 const getEthPrice = async () => {
   const inr_price = await client.get('ETH_PRICE')
-  console.log(inr_price)
   return inr_price
 }
 

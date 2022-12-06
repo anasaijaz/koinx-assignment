@@ -1,14 +1,11 @@
 import axios from "axios";
+import createHttpError from "http-errors";
 
 const _api = axios.create({
   baseURL: "https://api.etherscan.io/api",
-  params: {
-    apikey: process.env.ETHER_SCAN_API_KEY,
-  },
 });
 
 const getNormalTransactionsByUserAddress = async (userAddr) => {
-  try {
     const res = await _api.get("/", {
       params: {
         module: "account",
@@ -17,13 +14,14 @@ const getNormalTransactionsByUserAddress = async (userAddr) => {
         startblock: 0,
         offset: 10000,
         page: 1,
+        apikey: process.env.ETHER_SCAN_API_KEY,
       },
     });
 
     const data = res.data;
     const { message, status, result } = data;
+    if(status !== '1') throw createHttpError({stack: 408, message: 'Rate limit exceeded'})
 
-    console.log(result.length)
     return result.map(txn => ({
       from: txn.from,
       to: txn.to,
@@ -33,9 +31,6 @@ const getNormalTransactionsByUserAddress = async (userAddr) => {
       gasPrice: txn.gasPrice,
       gasUsed: txn.gasUsed
     }));
-  } catch (error) {
-    console.error(error);
-  }
 };
 
 export default {

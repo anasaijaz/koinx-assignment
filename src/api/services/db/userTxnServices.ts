@@ -1,5 +1,6 @@
 import UserTxn from "../../models/UserTxn";
 import BigNumber from 'bignumber.js'
+import createHttpError from "http-errors";
 
 const updateUserTxns = async (user_address, results) => {
   await UserTxn.updateOne({
@@ -18,6 +19,8 @@ const getUserBalance = async (user_address) => {
   const userTxns = await UserTxn.findOne({
     user_address
   })
+
+  if(userTxns === null) throw createHttpError({stack: 404, message: 'User address is invalid!'})
 
   const txns = userTxns.transactions
   BigNumber.config({ ROUNDING_MODE: 2 })

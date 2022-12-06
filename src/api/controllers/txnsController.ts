@@ -27,12 +27,12 @@ const getUserBalanceFromTxns = async (req: Request, res: Response, next: NextFun
   const { user_address } = req.params;
   try {
     const balance = await userTxnServices.getBalance(user_address);
+
     res.send({
       balance: balance
     });
 
   } catch (error) {
-    console.trace(error)
     next(createHttpError(error))
   }
 };
