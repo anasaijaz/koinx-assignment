@@ -9,7 +9,8 @@
     "prod": "cross-env NODE_ENV=production npm run build && node ./dist/index.js",
     "stage": "cross-env NODE_ENV=stage npm run build && node ./dist/index.js",
     "format": "prettier --write .",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "test": ""
   },
   "lint-staged": {
     "*.js": [
