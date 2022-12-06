@@ -7,7 +7,6 @@ const userTxnSchema = new Schema({
   a_date: Date,
 });
 
+const userTxn = mongoose.model("user-txns", userTxnSchema);
 
-const userTxn = mongoose.model('user-txns', userTxnSchema);
-
-export default userTxn
+export default userTxn;

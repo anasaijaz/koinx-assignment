@@ -1,9 +1,7 @@
-import express  from 'express'
-import txnsController from '../controllers/txnsController'
-const router = express.Router()
+import express from "express";
+import txnsController from "../controllers/txnsController";
+const router = express.Router();
 
+router.get("/:user_address", txnsController.get);
 
-router.get('/:user_address', txnsController.get)
-
-
-export default router
+export default router;
