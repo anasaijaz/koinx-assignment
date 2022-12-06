@@ -8,10 +8,16 @@ import express, {
 } from "express";
 import { Server } from "http";
 import createError from "http-errors";
+import routes from './api/routes/webRoutes'
+import './config/mongoose'
 
 config({ path: `.env.${process.env.NODE_ENV}` });
 
 const app: Application = express();
+
+app.use(express.json())
+
+app.use(routes)
 
 app.get("/", (req: Request, res: Response, next: NextFunction) => {
   res.end("Hello from other side!");
